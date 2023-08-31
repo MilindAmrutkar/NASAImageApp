@@ -65,4 +65,6 @@ dependencies {
     // Dagger-Hilt
     implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$daggerHiltVersion")
+
+    implementation(project(":core"))
 }
