@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -35,8 +34,6 @@ android {
 }
 
 dependencies {
-    val daggerHiltVersion = "2.47"
-    val retrofitVersion = "2.9.0"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -45,15 +42,4 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
-
-    //Moshi
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
-
-    // Dagger-Hilt
-    implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$daggerHiltVersion")
 }
