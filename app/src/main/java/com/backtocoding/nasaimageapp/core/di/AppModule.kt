@@ -1,13 +1,18 @@
 package com.backtocoding.nasaimageapp.core.di
 
+import android.content.Context
+import androidx.room.Room
 import com.backtocoding.nasaimageapp.BuildConfig
 import com.backtocoding.nasaimageapp.core.utils.Constants
+import com.backtocoding.nasaimageapp.data.local.AppDatabase
+import com.backtocoding.nasaimageapp.data.local.NasaImageDao
 import com.backtocoding.nasaimageapp.data.remote.ApiService
 import com.backtocoding.nasaimageapp.data.repository.NasaRepository
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -60,7 +65,27 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNasaImageRepository(apiService: ApiService): NasaRepository {
-        return NasaRepository(apiService)
+    fun provideNasaImageRepository(
+        apiService: ApiService,
+        nasaImageDao: NasaImageDao
+    ): NasaRepository {
+        return NasaRepository(apiService, nasaImageDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "nasa_database"
+        ).fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNasaImageDao(db: AppDatabase): NasaImageDao {
+        return db.nasaImageDao()
     }
 }
