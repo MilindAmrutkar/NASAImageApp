@@ -13,7 +13,7 @@ data class NasaImageResponse(
     val date: String,
 
     @field:Json(name = "explanation")
-    val explanation: String,
+    val description: String,
 
     @field:Json(name = "media_type")
     val mediaType: String
