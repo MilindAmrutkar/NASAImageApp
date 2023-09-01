@@ -1,5 +1,6 @@
 package com.backtocoding.nasaimageapp.core.di
 
+import com.backtocoding.nasaimageapp.BuildConfig
 import com.backtocoding.nasaimageapp.core.utils.Constants
 import com.backtocoding.nasaimageapp.data.remote.ApiService
 import com.backtocoding.nasaimageapp.data.repository.NasaRepository
@@ -29,7 +30,7 @@ object AppModule {
             .addInterceptor { chain ->
                 val request = chain.request()
                 val url = request.url.newBuilder()
-                    .addQueryParameter("api_key", Constants.API_KEY)
+                    .addQueryParameter("api_key", BuildConfig.API_KEY)
                     .build()
                 val newRequest = request.newBuilder()
                     .url(url)

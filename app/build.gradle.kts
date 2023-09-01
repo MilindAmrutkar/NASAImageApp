@@ -9,6 +9,10 @@ android {
     namespace = "com.backtocoding.nasaimageapp"
     compileSdk = 33
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.backtocoding.nasaimageapp"
         minSdk = 24
@@ -16,6 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "API_KEY", "\"YOUR_API_KEY\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
