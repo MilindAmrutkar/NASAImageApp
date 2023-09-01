@@ -96,8 +96,5 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation(project(":data"))
-    implementation(project(":core"))
-    implementation(project(":domain"))
 
 }

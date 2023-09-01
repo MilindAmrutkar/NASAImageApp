@@ -15,6 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "NASAImageApp"
 include(":app")
-include(":core")
-include(":data")
-include(":domain")
