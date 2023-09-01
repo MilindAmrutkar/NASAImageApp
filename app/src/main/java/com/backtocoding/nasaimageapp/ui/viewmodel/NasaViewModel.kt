@@ -9,6 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +23,8 @@ class NasaViewModel @Inject constructor(
     val nasaImage: StateFlow<ApiResponse<NasaImage?>> = _nasaImage
 
     init {
-        fetchImageOfTheDay()
+        val todayDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        fetchImageOfTheDay(todayDate)
     }
 
     private fun fetchImageOfTheDay(date: String? = null) {
@@ -29,9 +33,5 @@ class NasaViewModel @Inject constructor(
                 _nasaImage.value = result
             }
         }
-    }
-
-    fun refresh() {
-        fetchImageOfTheDay()
     }
 }
