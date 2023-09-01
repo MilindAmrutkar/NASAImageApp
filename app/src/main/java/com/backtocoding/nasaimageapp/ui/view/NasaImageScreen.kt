@@ -1,9 +1,7 @@
 package com.backtocoding.nasaimageapp.ui.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
@@ -13,11 +11,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.backtocoding.nasaimageapp.R
 import com.backtocoding.nasaimageapp.core.network.ApiResponse
 import com.backtocoding.nasaimageapp.ui.viewmodel.NasaViewModel
@@ -69,13 +68,12 @@ fun NasaImageContent(
         }
         item { Text(text = date) }
         item {
-            Image(
-                painter = rememberAsyncImagePainter(
-                    model = imageUrl,
-                    error = painterResource(id = R.drawable.ic_error)
-                ), contentDescription = "Nasa Image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(imageUrl).build(),
+                contentDescription = "Nasa Image",
+                placeholder = painterResource(id = R.drawable.ic_error),
+                error = painterResource(id = R.drawable.ic_error)
             )
         }
         item { Text(text = description) }
