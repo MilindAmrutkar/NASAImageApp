@@ -14,9 +14,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
+import com.backtocoding.nasaimageapp.R
 import com.backtocoding.nasaimageapp.core.network.ApiResponse
 import com.backtocoding.nasaimageapp.ui.viewmodel.NasaViewModel
 
@@ -30,17 +32,17 @@ fun NasaImageScreen(date: String, viewModel: NasaViewModel = hiltViewModel()) {
         }
 
         is ApiResponse.Error -> {
-            Text(text = "Error")
+            result.exception.message?.let { Text(text = it) }
         }
 
         is ApiResponse.Success -> {
             val imageData = result.data
             if (imageData?.date == date) {
                 NasaImageContent(
-                    title = imageData.title,
+                    title = imageData.title ?: "",
                     date = imageData.date,
-                    description = imageData.explanation,
-                    imageUrl = imageData.url
+                    description = imageData.explanation ?: "",
+                    imageUrl = imageData.url ?: ""
                 )
             }
 
@@ -68,8 +70,10 @@ fun NasaImageContent(
         item { Text(text = date) }
         item {
             Image(
-                painter = rememberAsyncImagePainter(model = imageUrl),
-                contentDescription = "Nasa Image",
+                painter = rememberAsyncImagePainter(
+                    model = imageUrl,
+                    error = painterResource(id = R.drawable.ic_error)
+                ), contentDescription = "Nasa Image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxWidth()
             )

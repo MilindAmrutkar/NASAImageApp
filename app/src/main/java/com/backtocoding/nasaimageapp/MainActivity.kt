@@ -38,8 +38,7 @@ fun AppContent() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-//            NasaImageScreen(date = todayDate)
-            NasaImageScreen(date = "2023-08-30")
+            NasaImageScreen(date = todayDate)
         }
     }
 }

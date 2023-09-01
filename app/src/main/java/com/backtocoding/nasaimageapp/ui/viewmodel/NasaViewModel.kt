@@ -20,7 +20,7 @@ class NasaViewModel @Inject constructor(
     val nasaImage: StateFlow<ApiResponse<NasaImage?>> = _nasaImage
 
     init {
-        fetchImageOfTheDay("2023-08-30")
+        fetchImageOfTheDay()
     }
 
     private fun fetchImageOfTheDay(date: String? = null) {

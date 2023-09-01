@@ -55,13 +55,25 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val roomVersion = "2.5.2"
     val daggerHiltVersion = "2.47"
+    val okHttpBomVersion = "4.11.0"
+    val moshiVersion = "1.14.0"
+
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
 
+    // OkHttp
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:$okHttpBomVersion"))
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
     //Moshi
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+    implementation("com.squareup.moshi:moshi:$moshiVersion")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
     // Room
     implementation("androidx.room:room-runtime:$roomVersion")
