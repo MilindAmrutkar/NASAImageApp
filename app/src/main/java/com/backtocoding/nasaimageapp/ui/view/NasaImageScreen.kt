@@ -1,6 +1,7 @@
 package com.backtocoding.nasaimageapp.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -35,28 +37,36 @@ import com.backtocoding.nasaimageapp.ui.viewmodel.NasaViewModel
 fun NasaImageScreen(date: String, viewModel: NasaViewModel = hiltViewModel()) {
     val nasaImage by viewModel.nasaImage.collectAsState()
 
-    when (val result = nasaImage) {
-        is ApiResponse.Loading -> {
-            CircularProgressIndicator()
-        }
-
-        is ApiResponse.Error -> {
-            result.exception.message?.let { Text(text = it) }
-        }
-
-        is ApiResponse.Success -> {
-            val imageData = result.data
-            if (imageData?.date == date) {
-                NasaImageContent(
-                    title = imageData.title ?: "",
-                    date = imageData.date,
-                    description = imageData.explanation ?: "",
-                    imageUrl = imageData.url ?: ""
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        when (val result = nasaImage) {
+            is ApiResponse.Loading -> {
+                CircularProgressIndicator(
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
 
+            is ApiResponse.Error -> {
+                result.exception.message?.let { Text(text = it) }
+            }
+
+            is ApiResponse.Success -> {
+                val imageData = result.data
+                if (imageData?.date == date) {
+                    NasaImageContent(
+                        title = imageData.title ?: "",
+                        date = imageData.date,
+                        description = imageData.explanation ?: "",
+                        imageUrl = imageData.url ?: ""
+                    )
+                }
+
+            }
         }
     }
+
 }
 
 @Composable
