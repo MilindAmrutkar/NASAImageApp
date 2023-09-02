@@ -17,7 +17,7 @@ class FetchNasaImageOfTheDayUseCase @Inject constructor(private val nasaReposito
                 }
 
                 is ApiResponse.Error -> {
-                    ApiResponse.Error(result.exception)
+                    ApiResponse.Error(result.exception, result.apiError)
                 }
 
                 is ApiResponse.Loading -> {

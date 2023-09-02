@@ -67,9 +67,10 @@ object AppModule {
     @Singleton
     fun provideNasaImageRepository(
         apiService: ApiService,
-        nasaImageDao: NasaImageDao
+        nasaImageDao: NasaImageDao,
+        moshi: Moshi
     ): NasaRepository {
-        return NasaRepository(apiService, nasaImageDao)
+        return NasaRepository(apiService, nasaImageDao, moshi)
     }
 
     @Provides
@@ -87,5 +88,11 @@ object AppModule {
     @Singleton
     fun provideNasaImageDao(db: AppDatabase): NasaImageDao {
         return db.nasaImageDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder().build()
     }
 }

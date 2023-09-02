@@ -1,4 +1,4 @@
-# NASA Image App
+# NASA Image of the Day App
 
 An Android app that uses the NASA API to display the Astronomy Picture of the Day.
 The app uses the principles of Clean Architecture and provides offline support through Room

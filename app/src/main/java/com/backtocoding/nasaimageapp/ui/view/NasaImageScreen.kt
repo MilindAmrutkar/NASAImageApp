@@ -49,7 +49,15 @@ fun NasaImageScreen(date: String, viewModel: NasaViewModel = hiltViewModel()) {
             }
 
             is ApiResponse.Error -> {
-                result.exception.message?.let { Text(text = it) }
+                val message = result.apiError?.msg ?: result.exception.message
+                Text(
+                    text = message ?: "An unknown error occurred",
+                    style = TextStyle(
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 16.sp,
+                        color = Color.DarkGray
+                    )
+                )
             }
 
             is ApiResponse.Success -> {
