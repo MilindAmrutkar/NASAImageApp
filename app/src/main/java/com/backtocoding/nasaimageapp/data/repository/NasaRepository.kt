@@ -1,9 +1,9 @@
 package com.backtocoding.nasaimageapp.data.repository
 
-import com.backtocoding.nasaimageapp.core.network.ApiError
-import com.backtocoding.nasaimageapp.core.network.ApiResponse
 import com.backtocoding.nasaimageapp.data.local.NasaImageDao
 import com.backtocoding.nasaimageapp.data.local.toDto
+import com.backtocoding.nasaimageapp.data.network.ApiError
+import com.backtocoding.nasaimageapp.data.network.ApiResponse
 import com.backtocoding.nasaimageapp.data.remote.ApiService
 import com.backtocoding.nasaimageapp.data.remote.NasaImageDto
 import com.backtocoding.nasaimageapp.data.remote.toEntity

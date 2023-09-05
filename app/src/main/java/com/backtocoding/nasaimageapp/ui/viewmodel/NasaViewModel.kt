@@ -2,7 +2,7 @@ package com.backtocoding.nasaimageapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.backtocoding.nasaimageapp.core.network.ApiResponse
+import com.backtocoding.nasaimageapp.data.network.ApiResponse
 import com.backtocoding.nasaimageapp.domain.model.NasaImage
 import com.backtocoding.nasaimageapp.domain.usecase.FetchNasaImageOfTheDayUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,4 +1,4 @@
-package com.backtocoding.nasaimageapp.core.network
+package com.backtocoding.nasaimageapp.data.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -1,4 +1,4 @@
-package com.backtocoding.nasaimageapp.core.network
+package com.backtocoding.nasaimageapp.data.network
 
 sealed class ApiResponse<out T> {
     data class Success<out T>(val data: T) : ApiResponse<T>()

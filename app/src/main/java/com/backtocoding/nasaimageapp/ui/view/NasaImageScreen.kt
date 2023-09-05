@@ -30,7 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.backtocoding.nasaimageapp.R
-import com.backtocoding.nasaimageapp.core.network.ApiResponse
+import com.backtocoding.nasaimageapp.data.network.ApiResponse
 import com.backtocoding.nasaimageapp.ui.viewmodel.NasaViewModel
 
 @Composable

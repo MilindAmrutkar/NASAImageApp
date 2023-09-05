@@ -1,6 +1,6 @@
 package com.backtocoding.nasaimageapp.domain.usecase
 
-import com.backtocoding.nasaimageapp.core.network.ApiResponse
+import com.backtocoding.nasaimageapp.data.network.ApiResponse
 import com.backtocoding.nasaimageapp.data.remote.NasaImageDto
 import com.backtocoding.nasaimageapp.data.repository.NasaRepository
 import com.backtocoding.nasaimageapp.domain.model.NasaImage
